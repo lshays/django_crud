@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'covermymeds.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_covermymeds',
+        'USER': 'lshays',
+        'PASSWORD': 'password',
+        'HOST' : '',
+        'PORT' : '',
     }
 }
 
@@ -105,12 +109,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
 USE_L10N = True
-
 USE_TZ = True
 
 
