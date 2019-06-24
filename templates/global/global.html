@@ -1,0 +1,15 @@
+<header>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'global/style.css' %}">
+    <div>
+        <a href="{% url 'crud:index' %}">Home</a>
+    </div>
+</header>
+<body>
+    <div class="body">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+<footer>
+    <span>Created by Luke Shays</span>
+</footer>

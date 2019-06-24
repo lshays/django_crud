@@ -1,0 +1,41 @@
+header{
+    padding: 10px;
+    background: black;
+    color: white;
+    font-size: 24px;
+}
+
+header a{
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+header a:hover{
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    background-color: grey;
+}
+
+footer{
+    background: black;
+    text-align: right;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    position:fixed;
+    bottom:0;
+    left:0;
+}
+
+body{
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+}
+
+.body{
+    margin: 20px;
+}
