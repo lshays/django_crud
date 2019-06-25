@@ -28,7 +28,7 @@
                     <tbody>
                         {% for person in people %}
                         <tr>
-                            <td>{{person.name}}</td>
+                            <td><a href="{% url 'crud:create' id=person.id %}">{{person.name}}</a></td>
                             <td>{{person.date}}</td>
                             <td>{{person.number}}</td>
                         </tr>

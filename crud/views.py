@@ -18,7 +18,7 @@ def search(request):
     return render(request, 'crud/search.html', context={"people" : people})
 
 @login_required
-def create(request):
+def create(request, id=None):
     context = {}
     if request.POST:
         name = request.POST["id_name"]
@@ -27,5 +27,8 @@ def create(request):
         p = Person(name=name, date=date, number=number)
         p.save()
         context["success"] = True
+        context["Person"] = p
+    elif id:
+        p = get_object_or_404(Person, id=id)
         context["Person"] = p
     return render(request, 'crud/create.html', context)
