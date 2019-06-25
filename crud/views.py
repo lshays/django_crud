@@ -11,3 +11,7 @@ def index(request):
 @login_required
 def search(request):
     return render(request, 'crud/search.html')
+
+@login_required
+def create(request):
+    return render(request, 'crud/create.html')
