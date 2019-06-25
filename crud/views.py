@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Person
@@ -18,7 +18,7 @@ def search(request):
     return render(request, 'crud/search.html', context={"people" : people})
 
 @login_required
-def create(request, id=None):
+def create(request, id=None, success=None):
     context = {}
     if request.POST:
         name = request.POST["id_name"]
@@ -26,9 +26,10 @@ def create(request, id=None):
         number = request.POST["id_number"]
         p = Person(name=name, date=date, number=number)
         p.save()
-        context["success"] = True
-        context["Person"] = p
+        return redirect('crud:create', id=p.id, success=1)
     elif id:
         p = get_object_or_404(Person, id=id)
         context["Person"] = p
+        if success:
+            context['success'] = True
     return render(request, 'crud/create.html', context)
