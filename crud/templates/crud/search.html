@@ -2,7 +2,7 @@
 
 {% block content %}
     {% load static %}
-    <script type="text/javascript" src="{% static 'crud/fuzzySearch.js' %}"></script>
+    <script type="text/javascript" src="{% static 'crud/search.js' %}"></script>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -10,11 +10,10 @@
             </div>
         </div>
         <form method="GET">
-            <div class="row">
-                <div class="col-lg-4 col-lg-offset-4">
-                    <input type="search" id="search" value="" class="form-control" placeholder="Search by name">
-                </div>
+            <div class="col-lg-4 col-lg-offset-4">
+                <input type="search" id="search_str" name="search_str" value="" class="form-control" placeholder="Search by name">
             </div>
+            <input type="submit" id="btn_submit" name="btn_submit" value="Search" class="btn btn-primary">
         </form>
         <div class="row">
             <div class="col-lg-12">
@@ -27,21 +26,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for person in people %}
                         <tr>
-                            <td>Introducing</td>
-                            <td>jQuery</td>
-                            <td>Searchable</td>
+                            <td>{{person.name}}</td>
+                            <td>{{person.date}}</td>
+                            <td>{{person.number}}</td>
                         </tr>
-                        <tr>
-                            <td>Lorem</td>
-                            <td>Ipsum</td>
-                            <td>Dolor</td>
-                        </tr>
-                        <tr>
-                            <td>Some</td>
-                            <td>More</td>
-                            <td>Data</td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
                 <hr>

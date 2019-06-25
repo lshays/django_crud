@@ -11,7 +11,11 @@ def index(request):
 
 @login_required
 def search(request):
-    return render(request, 'crud/search.html')
+    if request.GET and request.GET["search_str"]:
+        people = Person.objects.filter(name__icontains=request.GET["search_str"])[:5]
+    else:
+        people = Person.objects.all()[:5]
+    return render(request, 'crud/search.html', context={"people" : people})
 
 @login_required
 def create(request):
