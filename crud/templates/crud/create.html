@@ -1,22 +1,35 @@
 {% extends 'global/global.html' %}
 
 {% block content %}
-    <h1>Create</h1>
+    <h1>{{Person|yesno:"Edit,Create"}}</h1>
+    {% if success %}
+    <span class="success bg-success">Record Created Successfully!</span>
+    {% endif %}
     <form style="width: 50%;" method="POST">
+        {% csrf_token %}
         <div class="form-group">
             <label for="id_name">Name</label>
-            <input type="text" class="form-control" id="id_name" required>
+            <input value="{{Person.name}}" type="text" class="form-control" id="id_name" name="id_name" required>
         </div>
         <div class="form-group">
             <label for="id_date">Date</label>
-            <input type="date" class="form-control" id="id_date" required>
+            <input value="{{Person.date}}" type="date" class="form-control" id="id_date" name="id_date" required>
         </div>
         <div class="form-group">
             <label for="id_num">Number</label>
-            <input type="number" class="form-control" id="id_number" required>
+            <input value="{{Person.number}}" type="number" class="form-control" id="id_number" name="id_number" required>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-success">Create</button>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button type="submit" class="btn btn-success">{{Person|yesno:"Update,Create"}}</button>
+                    {% if Person %}
+                    <input type="submit" class="btn btn-danger" value="Delete" name="btn_delete">
+                    {% endif %}
+                </div>
+            </div>
         </div>
+        
+        <input type="hidden" value="{{Person.id}}" name="id_person" id="id_person">
     </form>
 {% endblock %}
