@@ -1,6 +1,7 @@
 from django.test import TestCase, Client
-from django.urls import reverse
 from django.contrib.auth.models import User
+from .models import Person
+from datetime import date
 
 class LoginTests(TestCase):
 
@@ -34,3 +35,12 @@ class LoginTests(TestCase):
         
         response = c.get('/crud/search/')
         self.assertEqual(response.status_code, 200)
+
+class ModelTests(TestCase):
+
+    def test_create_record(self):
+        Person.objects.create(name="testname", date="2019-06-26", number=1)
+        self.assertEqual(len(Person.objects.all()), 1)
+        self.assertEqual(Person.objects.get(id=1).name, "testname")
+        self.assertEqual(Person.objects.get(id=1).date, date(2019,6,26))
+        self.assertEqual(Person.objects.get(id=1).number, 1)
