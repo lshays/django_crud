@@ -25,4 +25,12 @@ class LoginTests(TestCase):
         user = User.objects.create_superuser('user', 'fake.email@gmail.com', '12345')
         c = Client()
         login = c.login(username='user', password='12345')
-        self.assertTrue(login)
+        
+        response = c.get('/crud/')
+        self.assertEqual(response.status_code, 200)
+        
+        response = c.get('/crud/create/')
+        self.assertEqual(response.status_code, 200)
+        
+        response = c.get('/crud/search/')
+        self.assertEqual(response.status_code, 200)
