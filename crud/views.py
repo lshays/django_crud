@@ -24,6 +24,19 @@ def create(request, id=None, success=None):
         name = request.POST["id_name"]
         date = request.POST["id_date"]
         number = request.POST["id_number"]
+        submit = request.POST["btn_submit"]
+        _id = request.POST["id_person"]
+        if submit == "Delete":
+            Person.objects.get(id=_id).delete()
+            print("deleting")
+            return redirect('crud:create')
+        if _id and submit != "Delete":
+            p = Person.objects.get(id=_id)
+            p.name = name
+            p.date = date
+            p.number = number
+            p.save()
+            return redirect('crud:create', id=p.id, success=1)
         p = Person(name=name, date=date, number=number)
         p.save()
         return redirect('crud:create', id=p.id, success=1)

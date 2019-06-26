@@ -1,6 +1,8 @@
 {% extends 'global/global.html' %}
 
 {% block content %}
+    {% load static %}
+    <script type="text/javascript" src="{% static 'crud/create.js' %}"></script>
     <h1>{{Person|yesno:"Edit,Create"}}</h1>
     {% if success %}
     <span class="success bg-success">Record Created Successfully!</span>
@@ -22,9 +24,9 @@
         <div class="form-group">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <button type="submit" class="btn btn-success">{{Person|yesno:"Update,Create"}}</button>
+                    <button type="submit" value="Update" name="btn_submit" id="btn_submit" class="btn btn-success">{{Person|yesno:"Update,Create"}}</button>
                     {% if Person %}
-                    <input type="submit" class="btn btn-danger" value="Delete" name="btn_delete">
+                    <button type="submit" value="Delete" class="btn btn-danger" name="btn_submit" id="btn_delete">Delete</button>
                     {% endif %}
                 </div>
             </div>
